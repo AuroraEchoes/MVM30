@@ -5,7 +5,7 @@ public class EnemyTest : EnemyBase
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        Attack();
     }
 
     // Update is called once per frame
@@ -25,8 +25,8 @@ public class EnemyTest : EnemyBase
     }
 
     public override void Attack()
-    {
-        
+    {   
+        base.Attack();
     }
 
     public override void Death()
