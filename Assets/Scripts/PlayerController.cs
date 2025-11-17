@@ -1,8 +1,12 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Tilemaps;
 
 public class PlayerController : MonoBehaviour
 {
+    // HACK: Remove this
+    [SerializeField] private Tilemap Tilemap;
+    [SerializeField] private TileBase SelectableTile;
     [SerializeField] private float MovementSpeed = 200.0f;
     [SerializeField] private bool UseWorldSpaceMovement;
     private Rigidbody2D Rigidbody;
@@ -17,6 +21,8 @@ public class PlayerController : MonoBehaviour
     {
         Rigidbody = GetComponent<Rigidbody2D>();
         AnimationController = GetComponent<Animator>();
+        foreach (Vector3Int TilePosition in Tilemap.cellBounds.allPositionsWithin)
+            Tilemap.SetColor(TilePosition, Color.green);
     }
 
     private void Update()
@@ -39,6 +45,11 @@ public class PlayerController : MonoBehaviour
             CurrentDirectionIndex = CalculateDirectionIndex();
     }
 
+    public void PlaceTrap(InputAction.CallbackContext Context)
+    {
+        HighlightNearbyCells();
+    }
+
     private int CalculateDirectionIndex()
     {
         const int NumDirections = 8;
@@ -59,5 +70,24 @@ public class PlayerController : MonoBehaviour
         Vector2 MovementInput = this.MovementInput;
         Matrix2D Matrix = UseWorldSpaceMovement ? WorldControlsMatrix : ScreenControlsMatrix;
         return Matrix.Mult(MovementInput).normalized;
+    }
+
+    private void HighlightNearbyCells()
+    {
+        const int RangeRadiusCells = 3;
+        Tilemap.ClearAllTiles();
+        Vector3Int CentreCell = Tilemap.WorldToCell(transform.position);
+        for (int X = CentreCell.x - RangeRadiusCells; X <= CentreCell.x + RangeRadiusCells; X++)
+        {
+            for (int Y = CentreCell.y - RangeRadiusCells; Y <= CentreCell.x + RangeRadiusCells; Y++)
+            {
+                Vector3Int Position = new Vector3Int(X, Y, CentreCell.z);
+                if (Vector3.Distance(Position, CentreCell) <= RangeRadiusCells)
+                {
+                    Tilemap.SetTile(Position, SelectableTile);
+                }
+            }
+        }
+
     }
 }
