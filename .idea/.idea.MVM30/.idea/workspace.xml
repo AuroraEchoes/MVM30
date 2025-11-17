@@ -6,8 +6,14 @@
   <component name="ChangeListManager">
     <list default="true" id="65633575-3b71-462d-9c98-d692db6ce352" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.MVM30/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.MVM30/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/AI/EnemyTest.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/AI/EnemyTest.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/AI/AttackBase.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/AI/AttackBase.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/AI/EnemyBase.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/AI/EnemyBase.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/AI/EnemyStats.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/AI/EnemyStats.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/AI/TestScripts/EnemyTest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/AI/TestScripts/EnemyTest.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/AI/TestScripts/TestEnemy2Attack.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/AI/TestScripts/TestEnemy2Attack.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/AI/TestScripts/TestEnemy2Attack2.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/AI/TestScripts/TestEnemy2Attack2.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/AI/TestScripts/TestEnemyAttack1.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/AI/TestScripts/TestEnemyAttack1.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/AI/TestScripts/TestEnemyAttack2.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/AI/TestScripts/TestEnemyAttack2.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/samplescene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/samplescene.unity" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -20,8 +26,8 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/AI/AttackBase.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/AI/EnemyBase.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/AI/EnemyStats.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/AI/TestScripts/TestEnemy2Attack2.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 6
@@ -108,7 +114,8 @@
       <workItem from="1763264086391" duration="26000" />
       <workItem from="1763274652583" duration="1590000" />
       <workItem from="1763290412400" duration="2015000" />
-      <workItem from="1763344738640" duration="1362000" />
+      <workItem from="1763344738640" duration="2255000" />
+      <workItem from="1763353247342" duration="2712000" />
     </task>
     <servers />
   </component>

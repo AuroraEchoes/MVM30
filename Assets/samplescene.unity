@@ -153,6 +153,7 @@ MonoBehaviour:
   attacks:
   - {fileID: 6440369983270276460, guid: 846119e9f9259a845b5f702781ceab62, type: 3}
   - {fileID: 5962257352870826253, guid: 28d2fc0b1aa6fd342b599315652c942f, type: 3}
+  Waypoints: []
 --- !u!4 &364314641
 Transform:
   m_ObjectHideFlags: 0
@@ -202,6 +203,12 @@ MonoBehaviour:
   attacks:
   - {fileID: 6561193278660501447, guid: 5b9a218fba8b70e4d83356d799a571bb, type: 3}
   - {fileID: 6221133616658740925, guid: ebe387072d44f094eb3c1219ad51e35a, type: 3}
+  Waypoints:
+  - {x: 0, y: 0, z: 0}
+  - {x: 1, y: 0, z: 0}
+  - {x: 2, y: 0, z: 0}
+  - {x: 1, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
 --- !u!4 &966600627
 Transform:
   m_ObjectHideFlags: 0

@@ -5,9 +5,11 @@ using Random = UnityEngine.Random;
 public class EnemyBase : MonoBehaviour
 {
     [SerializeField] private string name;
-    [SerializeField] private EnemyStats stats;
+    [SerializeField] public EnemyStats stats;
     [SerializeField] private AttackBase[] attacks;
     private float currentHealth;
+    private bool CanBeDamaged = true;
+    private bool detectsPlayer = false;
 
     void Start()
     {
@@ -15,13 +17,12 @@ public class EnemyBase : MonoBehaviour
     }
 
     public virtual void Move()
-    {
-        
-    }
+    {}
 
-    public virtual void TakeDamage()
+    public virtual void TakeDamage(float damage)
     {
-        
+        if(CanBeDamaged)
+            currentHealth -= damage;
     }
 
     public virtual void Attack()
@@ -29,7 +30,7 @@ public class EnemyBase : MonoBehaviour
         if (attacks.Length > 0)
         {
             int chosenAttack = UnityEngine.Random.Range(0, attacks.Length);
-            attacks[chosenAttack].DoAttack();
+            attacks[chosenAttack].DoAttack(this);
         }
     }
 

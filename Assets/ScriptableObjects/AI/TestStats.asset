@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: TestStats
   m_EditorClassIdentifier: 
   health: 20
+  speed: 5
