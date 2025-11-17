@@ -3008,6 +3008,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MovementSpeed: 100
+  UseWorldSpaceMovement: 0
 --- !u!50 &989151462
 Rigidbody2D:
   serializedVersion: 5
@@ -3330,7 +3331,7 @@ Grid:
   m_Enabled: 1
   m_CellSize: {x: 1, y: 0.5, z: 1}
   m_CellGap: {x: 0, y: 0, z: 0}
-  m_CellLayout: 2
+  m_CellLayout: 3
   m_CellSwizzle: 0
 --- !u!4 &1643444049
 Transform:

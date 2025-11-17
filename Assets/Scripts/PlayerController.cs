@@ -4,10 +4,14 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float MovementSpeed = 200.0f;
+    [SerializeField] private bool UseWorldSpaceMovement;
     private Rigidbody2D Rigidbody;
     private Animator AnimationController;
-    private Vector2 MovementVector;
+    private Vector2 MovementInput;
     private int CurrentDirectionIndex;
+
+    private static Matrix2D ScreenControlsMatrix = new Matrix2D(new Vector2(2.0f, 0.0f), new Vector2(0.0f, 1.0f));
+    private static Matrix2D WorldControlsMatrix = new Matrix2D(new Vector2(2.0f, -1.0f), new Vector2(2.0f, 1.0f));
 
     private void Start()
     {
@@ -23,14 +27,15 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Rigidbody.linearVelocity = MovementVector * MovementSpeed * Time.fixedDeltaTime;
+        Vector2 Direction = CalculateMovementDirection();
+        Rigidbody.linearVelocity = Direction * MovementSpeed * Time.fixedDeltaTime;
     }
 
     public void Move(InputAction.CallbackContext Context)
     {
-        MovementVector = Context.ReadValue<Vector2>();
+        MovementInput = Context.ReadValue<Vector2>();
         // Only recalculate direction if we’re moving
-        if (MovementVector.magnitude > 0.0f)
+        if (MovementInput.magnitude > 0.0f)
             CurrentDirectionIndex = CalculateDirectionIndex();
     }
 
@@ -39,11 +44,20 @@ public class PlayerController : MonoBehaviour
         const int NumDirections = 8;
         const float DegreesPerIndex = 360.0f / (float)NumDirections;
         const float HalfIndexOffset = DegreesPerIndex / 2.0f;
-        float SignedAngle = Vector2.SignedAngle(MovementVector, Vector2.up);
+        float SignedAngle = Vector2.SignedAngle(MovementInput, Vector2.up);
         SignedAngle -= HalfIndexOffset;
+        if (UseWorldSpaceMovement)
+            SignedAngle += DegreesPerIndex;
         // Wrap around to positive
         SignedAngle = SignedAngle < 0.0f ? SignedAngle + 360.0f : SignedAngle;
         int Index = Mathf.FloorToInt(SignedAngle / DegreesPerIndex);
         return Index;
+    }
+
+    private Vector2 CalculateMovementDirection()
+    {
+        Vector2 MovementInput = this.MovementInput;
+        Matrix2D Matrix = UseWorldSpaceMovement ? WorldControlsMatrix : ScreenControlsMatrix;
+        return Matrix.Mult(MovementInput).normalized;
     }
 }
