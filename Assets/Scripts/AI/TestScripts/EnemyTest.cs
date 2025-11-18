@@ -1,20 +1,27 @@
+
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.Tilemaps;
 
 public class EnemyTest : EnemyBase
 {
     public List<Vector3> Waypoints;
     public float currentSpeed = 1;
     public Coroutine attackCoroutine;
+    public Tilemap tilemap;
+    private Vector3 startPosition;
 
     public bool isAttacking = false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        startPosition = transform.position;
+        tilemap = FindAnyObjectByType<Tilemap>();
         currentSpeed = stats.speed;
-        Attack();
-        Move();
+        GetRandomPos();
+        //Attack();
+       // Move();
     }
 
     // Update is called once per frame
@@ -39,6 +46,21 @@ public class EnemyTest : EnemyBase
         base.Attack();
     }
 
+    private void GetRandomPos()
+    {
+        Waypoints = new List<Vector3>();
+        float randomX = startPosition.x + Random.Range(-stats.patrolRadius, stats.patrolRadius);
+        float randomY = startPosition.y + Random.Range(-stats.patrolRadius, stats.patrolRadius);
+        Vector3Int randomPos = new Vector3Int((int)Mathf.Floor(randomX), (int)Mathf.Floor(randomY), 0);
+        if(tilemap.cellBounds.Contains(randomPos))
+        {
+            Debug.Log("Position is within bounds");
+            
+        }
+        Waypoints.Add(tilemap.GetCellCenterWorld(randomPos));
+        Move();
+    }
+
     public override void Death()
     {
         
@@ -51,19 +73,22 @@ public class EnemyTest : EnemyBase
             float value = 0;
             
             Vector3 StartPosition = transform.position;
-            float requiredTime = Vector3.Distance(StartPosition, Waypoints[0]) / currentSpeed;
+            Vector3 nextposition = tilemap.GetCellCenterWorld(new Vector3Int((int)Mathf.Floor(Waypoints[0].x),
+                (int)Mathf.Floor(Waypoints[0].y), (int)Mathf.Floor(Waypoints[0].z)));
+            float requiredTime = Vector3.Distance(StartPosition, nextposition) / currentSpeed;
+            
             while (value < 1)
             {
-                //int fps = (int)(1f / Time.unscaledDeltaTime);
-                //Debug.Log(fps + " is the current FPS");
                 value += Time.deltaTime;
-                this.gameObject.transform.position = Vector3.Lerp(StartPosition, Waypoints[0], value / requiredTime);
+                gameObject.transform.position = Vector3.Lerp(StartPosition, nextposition, value / requiredTime);
                 yield return null;
             }
             Waypoints.RemoveAt(0);
             yield return null;
         }
-        yield return null;
+        
+        yield return new WaitForSeconds(Random.Range(0.5f, 5.0f));
+        GetRandomPos();
     }
     
 }

@@ -5,5 +5,6 @@ public class EnemyStats : ScriptableObject
 {
    public float health;
    public float speed;
+   public float patrolRadius;
 
 }
