@@ -34,9 +34,18 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "PlaceTrap",
+                    "name": "ToggleTrapPlacement",
                     "type": "Button",
                     "id": "b0231244-27dd-485c-a34e-86d72dfee0dd",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "PlaceTrap",
+                    "type": "Button",
+                    "id": "b25aad39-75e7-4ca5-94c0-3deda944b704",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -268,6 +277,28 @@
                     "name": "",
                     "id": "96544c44-64fe-4a1f-a14b-778aef41cf68",
                     "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ToggleTrapPlacement",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7104a0f5-0797-40e6-9fe3-6372a1f9086b",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PlaceTrap",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "363e8fd8-f0f0-4f59-81b4-1d13cb1521d7",
+                    "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

@@ -1,13 +1,23 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    // HACK: Remove this
-    [SerializeField] TileSelectVisualisation TileSelectVisualisation;
+
+    // HACK: SUPER TEMP
+    [SerializeField] private TrapLayer TrapLayer;
+
+    [Header("Movement")]
     [SerializeField] private float MovementSpeed = 200.0f;
     [SerializeField] private bool UseWorldSpaceMovement;
+
+    [Header("References")]
     [SerializeField] private Transform FeetLocation;
+
+    [Header("Traps")]
+    [SerializeField] private List<TrapBase> Traps;
+
     private Rigidbody2D Rigidbody;
     private Animator AnimationController;
     private Vector2 MovementInput;
@@ -47,6 +57,14 @@ public class PlayerController : MonoBehaviour
     {
         TrapPlacementEnabled = !TrapPlacementEnabled;
         Events.Gameplay.BroadcastToggleTrapPlacementEvent(TrapPlacementEnabled);
+    }
+
+    public void PlaceTrap(InputAction.CallbackContext Context)
+    {
+        if (TrapPlacementEnabled)
+        {
+            TrapLayer.PlaceTrap(Input.mousePosition);
+        }
     }
 
     private int CalculateDirectionIndex()
