@@ -1,8 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="65633575-3b71-462d-9c98-d692db6ce352" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.MVM30/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.MVM30/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/AI/AttackBase.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/AI/AttackBase.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/AI/EnemyBase.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/AI/EnemyBase.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/AI/EnemyStats.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/AI/EnemyStats.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/AI/TestScripts/EnemyTest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/AI/TestScripts/EnemyTest.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/AI/TestScripts/TestEnemy2Attack.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/AI/TestScripts/TestEnemy2Attack.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/AI/TestScripts/TestEnemy2Attack2.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/AI/TestScripts/TestEnemy2Attack2.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/AI/TestScripts/TestEnemyAttack1.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/AI/TestScripts/TestEnemyAttack1.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/AI/TestScripts/TestEnemyAttack2.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/AI/TestScripts/TestEnemyAttack2.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/samplescene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/samplescene.unity" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -12,25 +24,34 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 6
-}]]></component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/AI/AttackBase.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/AI/EnemyStats.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/AI/TestScripts/TestEnemy2Attack2.cs" root0="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 6
+}</component>
   <component name="ProjectId" id="35Xl1k2nuqfOzAI1JmlNrsMxKck" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "main",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;MB-AIImplementation&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
     <configuration name="Start Unity" type="RunUnityExe" factoryName="Unity Executable">
       <option name="EXE_PATH" value="C:\Program Files\Unity\Hub\Editor\6000.0.62f1\Editor\Unity.exe" />
@@ -91,6 +112,10 @@
       <option name="presentableId" value="Default" />
       <updated>1763264084999</updated>
       <workItem from="1763264086391" duration="26000" />
+      <workItem from="1763274652583" duration="1590000" />
+      <workItem from="1763290412400" duration="2015000" />
+      <workItem from="1763344738640" duration="2255000" />
+      <workItem from="1763353247342" duration="2712000" />
     </task>
     <servers />
   </component>
