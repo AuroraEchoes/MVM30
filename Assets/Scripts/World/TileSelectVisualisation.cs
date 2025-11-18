@@ -21,7 +21,6 @@ public class TileSelectVisualisation : MonoBehaviour
     void Start()
     {
         Tilemap = GetComponent<Tilemap>();
-        Events.Gameplay.ToggleTrapPlacementEvent += ToggleTrapPlacement;
     }
 
     void Update()
@@ -33,7 +32,7 @@ public class TileSelectVisualisation : MonoBehaviour
         }
     }
 
-    private void ToggleTrapPlacement(bool Enabled)
+    public void ToggleTrapPlacement(bool Enabled)
     {
         VisualisationEnabled = Enabled;
         if (!Enabled)

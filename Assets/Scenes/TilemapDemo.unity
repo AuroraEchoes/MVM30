@@ -252,7 +252,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 872264470}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa41d7f8ecc4f7075b7eb4d297387c19, type: 3}
+  m_Script: {fileID: 11500000, guid: badf967c2decaebad9526d4b5dbe8d09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   TrapTile: {fileID: 11400000, guid: 216d5b5db91bffe9e81298cbd3f39346, type: 2}
@@ -3165,6 +3165,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1643444049}
   - component: {fileID: 1643444048}
+  - component: {fileID: 1643444050}
   m_Layer: 0
   m_Name: Grid
   m_TagString: Untagged
@@ -3202,6 +3203,21 @@ Transform:
   - {fileID: 1974820377}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1643444050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1643444047}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b03c0e9e23b41c69bf2c95a9c56cff0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Traps: {fileID: 872264474}
+  Visualisation: {fileID: 1974820380}
+  TerrainTilemap: {fileID: 877670984}
 --- !u!4 &1715984247 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1299191560634778427, guid: 3bfed8b63e2aa375b99f0ec990b7189f, type: 3}
@@ -3427,9 +3443,13 @@ PrefabInstance:
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 7891554979072024782, guid: 3bfed8b63e2aa375b99f0ec990b7189f, type: 3}
+      propertyPath: World
+      value: 
+      objectReference: {fileID: 1643444050}
+    - target: {fileID: 7891554979072024782, guid: 3bfed8b63e2aa375b99f0ec990b7189f, type: 3}
       propertyPath: TrapLayer
       value: 
-      objectReference: {fileID: 872264474}
+      objectReference: {fileID: 0}
     - target: {fileID: 7891554979072024782, guid: 3bfed8b63e2aa375b99f0ec990b7189f, type: 3}
       propertyPath: Traps.Array.size
       value: 0

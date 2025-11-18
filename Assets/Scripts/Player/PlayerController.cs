@@ -4,16 +4,13 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-
-    // HACK: SUPER TEMP
-    [SerializeField] private TrapLayer TrapLayer;
-
     [Header("Movement")]
     [SerializeField] private float MovementSpeed = 200.0f;
     [SerializeField] private bool UseWorldSpaceMovement;
 
     [Header("References")]
     [SerializeField] private Transform FeetLocation;
+    [SerializeField] private WorldInteractionManager World;
 
     [Header("Traps")]
     [SerializeField] private List<TrapBase> Traps;
@@ -56,14 +53,22 @@ public class PlayerController : MonoBehaviour
     public void ToggleTrapPlacement(InputAction.CallbackContext Context)
     {
         TrapPlacementEnabled = !TrapPlacementEnabled;
-        Events.Gameplay.BroadcastToggleTrapPlacementEvent(TrapPlacementEnabled);
+        World.ToggleTrapPlacementMode(TrapPlacementEnabled);
     }
 
     public void PlaceTrap(InputAction.CallbackContext Context)
     {
         if (TrapPlacementEnabled)
         {
-            TrapLayer.PlaceTrap(Input.mousePosition);
+            Vector3 MousePosWorld = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            bool SuccesfullyPlaced = World.TryPlaceTrap(FeetLocation.position, MousePosWorld, null);
+            Debug.Log($"Tried to place trap. Successful: {SuccesfullyPlaced}");
+            if (SuccesfullyPlaced)
+            {
+                // Exit placement mode
+                TrapPlacementEnabled = false;
+                World.ToggleTrapPlacementMode(false);
+            }
         }
     }
 
