@@ -12,14 +12,19 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Transform FeetLocation;
     [SerializeField] private WorldInteractionManager World;
 
-    [Header("Traps")]
-    [SerializeField] private List<TrapBase> Traps;
-
     private Rigidbody2D Rigidbody;
     private Animator AnimationController;
     private Vector2 MovementInput;
     private int CurrentDirectionIndex = 0;
     private bool TrapPlacementEnabled = false;
+
+    // HACK: I dont thiiiiink this should be serialized
+    // TODO: We need to have some kind of active trap i thikn?
+    [SerializeField] private List<TrapData> Traps = new List<TrapData>();
+    private Dictionary<string, float> TrapCooldowns = new Dictionary<string, float>();
+    // Sentinel value -1 (no selected trap)
+    private int SelectedTrapIndex = -1;
+
 
     private static Matrix2D ScreenControlsMatrix = new Matrix2D(new Vector2(2.0f, 0.0f), new Vector2(0.0f, 1.0f));
     private static Matrix2D WorldControlsMatrix = new Matrix2D(new Vector2(2.0f, -1.0f), new Vector2(2.0f, 1.0f));
@@ -34,6 +39,7 @@ public class PlayerController : MonoBehaviour
     {
         AnimationController.SetFloat("Direction", CurrentDirectionIndex);
         AnimationController.SetBool("IsWalking", Rigidbody.linearVelocity.magnitude > 0.0f);
+        TickTrapCooldowns();
     }
 
     private void FixedUpdate()
@@ -50,24 +56,30 @@ public class PlayerController : MonoBehaviour
             CurrentDirectionIndex = CalculateDirectionIndex();
     }
 
-    public void ToggleTrapPlacement(InputAction.CallbackContext Context)
+    public void PlaceTrapIndex1(InputAction.CallbackContext Context)
     {
-        TrapPlacementEnabled = !TrapPlacementEnabled;
-        World.ToggleTrapPlacementMode(TrapPlacementEnabled);
+        StartPlaceTrap(0);
     }
 
-    public void PlaceTrap(InputAction.CallbackContext Context)
+    public void PlaceTrapIndex2(InputAction.CallbackContext Context)
     {
-        if (TrapPlacementEnabled)
+        StartPlaceTrap(1);
+    }
+
+    public void ConfirmTrapLocation(InputAction.CallbackContext Context)
+    {
+        if (TrapPlacementEnabled && SelectedTrapIndex != -1 && CanUseTrap(SelectedTrapIndex))
         {
             Vector3 MousePosWorld = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            bool SuccesfullyPlaced = World.TryPlaceTrap(FeetLocation.position, MousePosWorld, null);
+            TrapData TrapData = Traps[SelectedTrapIndex];
+            bool SuccesfullyPlaced = World.TryPlaceTrap(FeetLocation.position, MousePosWorld, TrapData);
             Debug.Log($"Tried to place trap. Successful: {SuccesfullyPlaced}");
             if (SuccesfullyPlaced)
             {
                 // Exit placement mode
                 TrapPlacementEnabled = false;
-                World.ToggleTrapPlacementMode(false);
+                SelectedTrapIndex = -1;
+                World.DisableTrapPlacementVisualisation();
             }
         }
     }
@@ -92,5 +104,49 @@ public class PlayerController : MonoBehaviour
         Vector2 MovementInput = this.MovementInput;
         Matrix2D Matrix = UseWorldSpaceMovement ? WorldControlsMatrix : ScreenControlsMatrix;
         return Matrix.Mult(MovementInput).normalized;
+    }
+
+    private void TickTrapCooldowns()
+    {
+        foreach (string TrapIdentifier in TrapCooldowns.Keys)
+        {
+            TrapCooldowns[TrapIdentifier] -= Time.deltaTime;
+            if (TrapCooldowns[TrapIdentifier] <= 0.0f)
+                TrapCooldowns.Remove(TrapIdentifier);
+        }
+    }
+
+    public void AddTrap(TrapData Data)
+    {
+        Traps.Add(Data);
+    }
+
+    private bool CanUseTrap(int Index)
+    {
+        // We don’t have a trap index this high
+        if (Traps.Count <= Index)
+            return false;
+        TrapData Data = Traps[Index];
+        // On cooldown
+        if (TrapCooldowns.ContainsKey(Data.TrapIdentifier))
+            return false;
+        return true;
+    }
+
+    private void StartPlaceTrap(int Index)
+    {
+        // Trap placement is enabled. If it’s the same trap we’re already placing, toggle vis off
+        // Otherwise, switch to that trap
+        if (TrapPlacementEnabled && SelectedTrapIndex == Index)
+        {
+            TrapPlacementEnabled = false;
+            World.DisableTrapPlacementVisualisation();
+        }
+        else if (CanUseTrap(Index))
+        {
+            SelectedTrapIndex = Index;
+            TrapPlacementEnabled = true;
+            World.EnableTrapPlacementVisualisation(Traps[Index]);
+        }
     }
 }

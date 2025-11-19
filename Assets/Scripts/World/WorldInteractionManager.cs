@@ -8,9 +8,14 @@ public class WorldInteractionManager : MonoBehaviour
     // TODO: This should probably get it’s own class at some point
     [SerializeField] private Tilemap TerrainTilemap;
 
-    public void ToggleTrapPlacementMode(bool NewState)
+    public void EnableTrapPlacementVisualisation(TrapData Data)
     {
-        Visualisation.ToggleTrapPlacement(NewState);
+        Visualisation.EnableTrapPlacement(Data);
+    }
+
+    public void DisableTrapPlacementVisualisation()
+    {
+        Visualisation.DisableTrapPlacement();
     }
 
     public bool TryPlaceTrap(Vector3 PlayerWorldPos, Vector3 TrapWorldPos, TrapData Trap)
@@ -18,11 +23,10 @@ public class WorldInteractionManager : MonoBehaviour
         Vector2Int TrapPos = TerrainTilemap.WorldToCell(TrapWorldPos).ToVector2Int();
         Vector2Int PlayerPos = TerrainTilemap.WorldToCell(PlayerWorldPos).ToVector2Int();
         bool TileIsEmpty = TerrainIsPlaceable(TrapPos) && Traps.TileIsEmpty(TrapPos);
-        // TODO: Use TrapData to determine range (for now using const 3)
-        bool TileIsReachable = Vector2.Distance(TrapPos, PlayerPos) < 3.0f;
+        bool TileIsReachable = Vector2.Distance(TrapPos, PlayerPos) < Trap.PlacementRangeTiles;
         bool ValidPosition = TileIsEmpty && TileIsReachable;
         if (ValidPosition)
-            Traps.PlaceTrap(TrapPos);
+            Traps.PlaceTrap(TrapPos, Trap);
         return ValidPosition;
     }
 

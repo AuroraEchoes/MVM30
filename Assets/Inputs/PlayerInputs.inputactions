@@ -34,7 +34,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "ToggleTrapPlacement",
+                    "name": "ConfirmTrapLocation",
                     "type": "Button",
                     "id": "b0231244-27dd-485c-a34e-86d72dfee0dd",
                     "expectedControlType": "",
@@ -43,9 +43,18 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "PlaceTrap",
+                    "name": "PlaceTrapIndex1",
                     "type": "Button",
-                    "id": "b25aad39-75e7-4ca5-94c0-3deda944b704",
+                    "id": "29ec5dd6-9f19-40f1-93da-49f7f2d9d0e0",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "PlaceTrapIndex2",
+                    "type": "Button",
+                    "id": "65041e94-50fb-44b9-a3f5-9a0a98d1526f",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -275,34 +284,67 @@
                 },
                 {
                     "name": "",
-                    "id": "96544c44-64fe-4a1f-a14b-778aef41cf68",
-                    "path": "<Keyboard>/r",
+                    "id": "5ea74b44-e632-4f3f-8e9f-dfd017d088cd",
+                    "path": "<Keyboard>/1",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "ToggleTrapPlacement",
+                    "action": "PlaceTrapIndex1",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "7104a0f5-0797-40e6-9fe3-6372a1f9086b",
+                    "id": "a0bd541c-9a06-4d57-963f-1f8e3379de44",
+                    "path": "<Keyboard>/z",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PlaceTrapIndex1",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "483c1f1b-e3a9-4618-8c43-f985d4c5186f",
+                    "path": "<Keyboard>/2",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PlaceTrapIndex2",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f68a52dd-7073-494b-a72f-3e41cb4868ac",
+                    "path": "<Keyboard>/x",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PlaceTrapIndex2",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f4cb46b3-e97e-4ea3-aeab-9fe068356d67",
                     "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "PlaceTrap",
+                    "action": "ConfirmTrapLocation",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "363e8fd8-f0f0-4f59-81b4-1d13cb1521d7",
+                    "id": "66bfa55e-5121-4738-b11f-6034afc8c360",
                     "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "PlaceTrap",
+                    "action": "ConfirmTrapLocation",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

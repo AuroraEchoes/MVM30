@@ -11,11 +11,8 @@ public class TileSelectVisualisation : MonoBehaviour
     [SerializeField] private TileBase ObstructedTile;
     [SerializeField] private TileBase OutOfRangeTile;
 
-    [Header("Properties")]
-    [SerializeField] private int TrapPlacementRadiusTiles = 3;
-
     private bool VisualisationEnabled;
-
+    private TrapData VisualisedTrap;
     private Tilemap Tilemap;
 
     void Start()
@@ -32,15 +29,26 @@ public class TileSelectVisualisation : MonoBehaviour
         }
     }
 
-    public void ToggleTrapPlacement(bool Enabled)
+    public void EnableTrapPlacement(TrapData Trap)
     {
-        VisualisationEnabled = Enabled;
-        if (!Enabled)
-            ClearArea();
+        VisualisationEnabled = true;
+        VisualisedTrap = Trap;
+    }
+
+    public void DisableTrapPlacement()
+    {
+        VisualisationEnabled = false;
+        ClearArea();
     }
 
     private void HighlightArea(Vector3 WorldPosition)
     {
+        if (VisualisedTrap is null)
+        {
+            Debug.LogWarning("Tried to visualise trap, but trap is null");
+            return;
+        }
+
         Vector3Int Center = Tilemap.WorldToCell(WorldPosition);
 
         Vector2 MousePos = Input.mousePosition;
@@ -51,7 +59,7 @@ public class TileSelectVisualisation : MonoBehaviour
         foreach (Vector3Int CellPos in BaseTilemap.cellBounds.allPositionsWithin)
         {
             bool IsHovered = HoveredTile.x == CellPos.x && HoveredTile.y == CellPos.y;
-            if (Vector3.Distance(Center, CellPos) < TrapPlacementRadiusTiles)
+            if (Vector2.Distance(CellPos.ToVector2Int(), Center.ToVector2Int()) < VisualisedTrap.PlacementRangeTiles)
             {
                 if (IsHovered)
                     Tilemap.SetTile(CellPos, ValidHoveredTile);

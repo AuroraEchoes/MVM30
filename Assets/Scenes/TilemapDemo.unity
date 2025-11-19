@@ -255,7 +255,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: badf967c2decaebad9526d4b5dbe8d09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TrapTile: {fileID: 11400000, guid: 216d5b5db91bffe9e81298cbd3f39346, type: 2}
 --- !u!1 &877670981
 GameObject:
   m_ObjectHideFlags: 0
@@ -4846,7 +4845,6 @@ MonoBehaviour:
   ValidHoveredTile: {fileID: 11400000, guid: a4eb87417dfb67f64b2861ebbe486e85, type: 2}
   ObstructedTile: {fileID: 11400000, guid: a940d7a790251189993e66a84b37bf9d, type: 2}
   OutOfRangeTile: {fileID: 11400000, guid: 9a124b7d43e4f1aebae65177f92f6cb0, type: 2}
-  TrapPlacementRadiusTiles: 3
 --- !u!1001 &8952759853560183500
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4861,18 +4859,30 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5215124613013914455, guid: 3bfed8b63e2aa375b99f0ec990b7189f, type: 3}
       propertyPath: m_ActionEvents.Array.size
-      value: 15
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 5215124613013914455, guid: 3bfed8b63e2aa375b99f0ec990b7189f, type: 3}
       propertyPath: m_ActionEvents.Array.data[14].m_ActionId
-      value: b25aad39-75e7-4ca5-94c0-3deda944b704
+      value: 29ec5dd6-9f19-40f1-93da-49f7f2d9d0e0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5215124613013914455, guid: 3bfed8b63e2aa375b99f0ec990b7189f, type: 3}
+      propertyPath: m_ActionEvents.Array.data[15].m_ActionId
+      value: 65041e94-50fb-44b9-a3f5-9a0a98d1526f
       objectReference: {fileID: 0}
     - target: {fileID: 5215124613013914455, guid: 3bfed8b63e2aa375b99f0ec990b7189f, type: 3}
       propertyPath: m_ActionEvents.Array.data[14].m_ActionName
-      value: 'Player/PlaceTrap[/Mouse/leftButton,/Keyboard/space]'
+      value: 'Player/PlaceTrapIndex1[/Keyboard/1,/Keyboard/z]'
+      objectReference: {fileID: 0}
+    - target: {fileID: 5215124613013914455, guid: 3bfed8b63e2aa375b99f0ec990b7189f, type: 3}
+      propertyPath: m_ActionEvents.Array.data[15].m_ActionName
+      value: 'Player/PlaceTrapIndex2[/Keyboard/2,/Keyboard/x]'
       objectReference: {fileID: 0}
     - target: {fileID: 5215124613013914455, guid: 3bfed8b63e2aa375b99f0ec990b7189f, type: 3}
       propertyPath: m_ActionEvents.Array.data[14].m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5215124613013914455, guid: 3bfed8b63e2aa375b99f0ec990b7189f, type: 3}
+      propertyPath: m_ActionEvents.Array.data[15].m_PersistentCalls.m_Calls.Array.size
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5215124613013914455, guid: 3bfed8b63e2aa375b99f0ec990b7189f, type: 3}
@@ -4880,7 +4890,15 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5215124613013914455, guid: 3bfed8b63e2aa375b99f0ec990b7189f, type: 3}
+      propertyPath: m_ActionEvents.Array.data[15].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5215124613013914455, guid: 3bfed8b63e2aa375b99f0ec990b7189f, type: 3}
       propertyPath: m_ActionEvents.Array.data[14].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 8952759853560183501}
+    - target: {fileID: 5215124613013914455, guid: 3bfed8b63e2aa375b99f0ec990b7189f, type: 3}
+      propertyPath: m_ActionEvents.Array.data[15].m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 8952759853560183501}
     - target: {fileID: 5215124613013914455, guid: 3bfed8b63e2aa375b99f0ec990b7189f, type: 3}
@@ -4888,15 +4906,35 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5215124613013914455, guid: 3bfed8b63e2aa375b99f0ec990b7189f, type: 3}
+      propertyPath: m_ActionEvents.Array.data[15].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5215124613013914455, guid: 3bfed8b63e2aa375b99f0ec990b7189f, type: 3}
+      propertyPath: m_ActionEvents.Array.data[13].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ConfirmTrapLocation
+      objectReference: {fileID: 0}
+    - target: {fileID: 5215124613013914455, guid: 3bfed8b63e2aa375b99f0ec990b7189f, type: 3}
       propertyPath: m_ActionEvents.Array.data[14].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: PlaceTrap
+      value: PlaceTrapIndex1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5215124613013914455, guid: 3bfed8b63e2aa375b99f0ec990b7189f, type: 3}
+      propertyPath: m_ActionEvents.Array.data[15].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PlaceTrapIndex2
       objectReference: {fileID: 0}
     - target: {fileID: 5215124613013914455, guid: 3bfed8b63e2aa375b99f0ec990b7189f, type: 3}
       propertyPath: m_ActionEvents.Array.data[14].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: PlayerController, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 5215124613013914455, guid: 3bfed8b63e2aa375b99f0ec990b7189f, type: 3}
+      propertyPath: m_ActionEvents.Array.data[15].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PlayerController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5215124613013914455, guid: 3bfed8b63e2aa375b99f0ec990b7189f, type: 3}
       propertyPath: m_ActionEvents.Array.data[14].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 5215124613013914455, guid: 3bfed8b63e2aa375b99f0ec990b7189f, type: 3}
+      propertyPath: m_ActionEvents.Array.data[15].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 7891554979072024782, guid: 3bfed8b63e2aa375b99f0ec990b7189f, type: 3}
@@ -4909,8 +4947,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7891554979072024782, guid: 3bfed8b63e2aa375b99f0ec990b7189f, type: 3}
       propertyPath: Traps.Array.size
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 7891554979072024782, guid: 3bfed8b63e2aa375b99f0ec990b7189f, type: 3}
+      propertyPath: 'Traps.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 966c741e1e25dacf4a41f2e83f94c4c4, type: 2}
+    - target: {fileID: 7891554979072024782, guid: 3bfed8b63e2aa375b99f0ec990b7189f, type: 3}
+      propertyPath: 'Traps.Array.data[1]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 0e1610365654639ee97cf91b74caf541, type: 2}
     - target: {fileID: 7891554979072024782, guid: 3bfed8b63e2aa375b99f0ec990b7189f, type: 3}
       propertyPath: UseWorldSpaceMovement
       value: 0
