@@ -3,38 +3,43 @@ using UnityEngine;
 
 public class TestEnemyAttack1 : AttackBase
 {
-    public float attackspeed = 10;
-    public override void DoAttack(EnemyBase enemy)
+    public float attackspeed = 400;
+    public override void DoAttack(EnemyBase enemy , PlayerController PC)
         {
            Debug.Log("We be doing ythis attack");
            if (enemy is EnemyTest test)
            {
                test.isAttacking = true;
-               test.attackCoroutine = test.StartCoroutine(MoveAttack(test));
-               //  StartCoroutine(MoveAttack(test));
-
+               test.attackCoroutine = test.StartCoroutine(MoveAttack(test,PC));
            }
         }
 
-    private IEnumerator MoveAttack(EnemyTest test)
+    private IEnumerator MoveAttack(EnemyTest test, PlayerController PC)
     {
         test.Waypoints.Clear();
         float value = 0;
-        Vector3 endPosition = test.transform.position;
-        endPosition.x += 20;
-        Vector3 StartPosition = test.transform.position;
-        Debug.Log("We have begun the attack lunge");
-        float requiredTime = Vector3.Distance(StartPosition, endPosition) / attackspeed;
-        while (value < 1)
+		test.SetSpeed(0);
+        Vector3 endPosition = PC.gameObject.transform.position;
+        Vector3 StartPosition = test.EnemyFeetPos.position;
+		foreach(Transform transforms in PC.gameObject.GetComponentsInChildren<Transform>())
+		{
+			if(transforms.gameObject.name.Contains("Feet"))
+			{
+				endPosition = transforms.position;
+			}	
+		}	
+		test.Waypoints.Add(endPosition);	
+		yield return new WaitForSeconds(1.0f);
+        float requiredTime = Vector3.Distance(StartPosition, endPosition) / (attackspeed * Time.fixedDeltaTime);
+        while (value < requiredTime)
         {
-            //int fps = (int)(1f / Time.unscaledDeltaTime);
-            //Debug.Log(fps + " is the current FPS");
-            value += Time.deltaTime;
-            test.gameObject.transform.position = Vector3.Lerp(StartPosition, endPosition, value / requiredTime);
-            yield return null;
+            value+= Time.deltaTime;
+            test.SetSpeed(attackspeed);
+			yield return null;
         }
-        Debug.Log("We have ended the attack lunge");
-
+        
+		test.SetSpeed(test.stats.speed);
+		test.DoCoolDownExternal();
         test.isAttacking = false;
         yield return null;
     }

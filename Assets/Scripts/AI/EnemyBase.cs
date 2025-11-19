@@ -21,6 +21,8 @@ public class EnemyBase : MonoBehaviour
     protected Rigidbody2D rb;
     protected Vector2 startPos;
     protected float currentSpeed;
+	protected bool detectedPlayer;
+	protected PlayerController PC;
 
     void Start()
     {
@@ -42,32 +44,65 @@ public class EnemyBase : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (!isCooldown && !isAttacking)
+        if (!isAttacking && !isCooldown)
         {
-            Vector2 direction = new Vector2(0, 0);
-            if (Waypoints.Count > 0)
+            if (detectedPlayer)
             {
-                direction = (Waypoints[0] - EnemyFeetPos.position).normalized;
-                if (Vector3.Distance(EnemyFeetPos.position, Waypoints[0]) < 0.5f)
-                {
-                    Waypoints.RemoveAt(0);
-                    currentSpeed = stats.speed;
-                    isCooldown = true;
-                    Invoke("CoolDownEnd", Random.Range(0.5f, 1.0f));
-                }
+                ChasePlayer();
             }
             else
             {
                 Move();
             }
+        }
+        
+        if (isCooldown)
+        {
+            rb.linearVelocity = new Vector2(0,0) * 0;
+            Waypoints.Clear();
+        }
+
+        if (Waypoints.Count > 0)
+        {
+            Vector2 direction = (Waypoints[0] - EnemyFeetPos.position).normalized;
             rb.linearVelocity = direction * currentSpeed * Time.fixedDeltaTime;
         }
     }
 
+    public virtual void ChasePlayer()
+    {
+            if (Waypoints.Count == 0)
+            {
+                Waypoints.Add(new Vector3(0, 0, 0));
+            }
+
+            currentSpeed = stats.speed;
+
+            Waypoints[0] = PC.gameObject.transform.position;
+            if (Vector3.Distance(EnemyFeetPos.position, Waypoints[0]) < stats.AttackDistance)
+            {
+                isAttacking = true;
+                Attack();
+            }
+    }
+
     public virtual void Move()
     {
-        if (!isAttacking && !isCooldown)
+        if (Waypoints.Count > 0)
         {
+            if (Vector3.Distance(EnemyFeetPos.position, Waypoints[0]) < 1.0f)
+            {
+                Waypoints.RemoveAt(0);
+                currentSpeed = 0;
+                rb.linearVelocity = new Vector3(0, 0, 0);
+                isCooldown = true;
+                CancelInvoke("CoolDownEnd");
+                Invoke("CoolDownEnd", Random.Range(stats.minCooldown, stats.maxCooldown));
+            }
+        }
+        else
+        {
+            currentSpeed = stats.speed;
             GetRandomPos();
         }
     }
@@ -76,10 +111,22 @@ public class EnemyBase : MonoBehaviour
         isCooldown = false;
     }
 
+    public void DoCoolDownExternal()
+    {
+        CancelInvoke("CoolDownEnd");
+        isCooldown = true;
+        Invoke("CoolDownEnd", Random.Range(stats.minCooldown, stats.maxCooldown));
+    }
+
     public virtual void TakeDamage(float damage)
     {
         if(CanBeDamaged)
             currentHealth -= damage;
+    }
+
+    public void SetSpeed(float speed)
+    {
+       currentSpeed = speed;
     }
 
     public virtual void Attack()
@@ -87,8 +134,13 @@ public class EnemyBase : MonoBehaviour
         if (attacks.Length > 0)
         {
             int chosenAttack = UnityEngine.Random.Range(0, attacks.Length);
-            attacks[chosenAttack].DoAttack(this);
+            attacks[chosenAttack].DoAttack(this, PC);
         }
+    }
+
+    public virtual void AttackBegun()
+    {
+        rb.linearVelocity = new Vector3(0, 0, 0);
     }
     private void GetRandomPos()
     {
@@ -120,17 +172,24 @@ public class EnemyBase : MonoBehaviour
         Vector3Int randomPos = tilemap.WorldToCell(new Vector3(randomX, randomY, 0));
         return randomPos;
     }
-    
     public virtual void Death()
     {
         
     }
-
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        // TODO: add in implementation for when the player enters a trigger radius so the enemy thats chasing them.
+		if(collision.gameObject.TryGetComponent<PlayerController>(out PlayerController player))
+		{
+			PC = player;
+			detectedPlayer = true;
+		}
     }
-    
-    
+private void OnTriggerExit2D(Collider2D collision)
+    {
+		if(collision.gameObject.TryGetComponent<PlayerController>(out PlayerController player))
+		{
+			PC = null;
+			detectedPlayer = false;
+		}
+    }
 }
