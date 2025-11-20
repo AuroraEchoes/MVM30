@@ -22,4 +22,14 @@ public class TrapInteractionManager : MonoBehaviour
     {
         TileMap.SetTile(Tile.ToVector3Int(), Data.TrapTile);
     }
+
+    private void TriggerTrap(Vector2Int Tile)
+    {
+        TileMap.DeleteCells(Tile.ToVector3Int(), 1, 1, 1);
+    }
+
+    void OnTriggerEnter2D(Collider2D Other)
+    {
+        Debug.Log("Trigger entered");
+    }
 }

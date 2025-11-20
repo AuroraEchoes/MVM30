@@ -21,8 +21,8 @@ public class EnemyBase : MonoBehaviour
     protected Rigidbody2D rb;
     protected Vector2 startPos;
     protected float currentSpeed;
-	protected bool detectedPlayer;
-	protected PlayerController PC;
+    protected bool detectedPlayer;
+    protected PlayerController PC;
 
     void Start()
     {
@@ -31,7 +31,7 @@ public class EnemyBase : MonoBehaviour
         startPos = transform.position;
         if (tilemap == null)
         {
-            foreach(Tilemap map in FindObjectsByType<Tilemap>(FindObjectsSortMode.None))
+            foreach (Tilemap map in FindObjectsByType<Tilemap>(FindObjectsSortMode.None))
             {
                 if (map.name == "Ground")
                 {
@@ -55,10 +55,10 @@ public class EnemyBase : MonoBehaviour
                 Move();
             }
         }
-        
+
         if (isCooldown)
         {
-            rb.linearVelocity = new Vector2(0,0) * 0;
+            rb.linearVelocity = new Vector2(0, 0) * 0;
             Waypoints.Clear();
         }
 
@@ -71,19 +71,19 @@ public class EnemyBase : MonoBehaviour
 
     public virtual void ChasePlayer()
     {
-            if (Waypoints.Count == 0)
-            {
-                Waypoints.Add(new Vector3(0, 0, 0));
-            }
+        if (Waypoints.Count == 0)
+        {
+            Waypoints.Add(new Vector3(0, 0, 0));
+        }
 
-            currentSpeed = stats.speed;
+        currentSpeed = stats.speed;
 
-            Waypoints[0] = PC.gameObject.transform.position;
-            if (Vector3.Distance(EnemyFeetPos.position, Waypoints[0]) < stats.AttackDistance)
-            {
-                isAttacking = true;
-                Attack();
-            }
+        Waypoints[0] = PC.gameObject.transform.position;
+        if (Vector3.Distance(EnemyFeetPos.position, Waypoints[0]) < stats.AttackDistance)
+        {
+            isAttacking = true;
+            Attack();
+        }
     }
 
     public virtual void Move()
@@ -120,13 +120,13 @@ public class EnemyBase : MonoBehaviour
 
     public virtual void TakeDamage(float damage)
     {
-        if(CanBeDamaged)
+        if (CanBeDamaged)
             currentHealth -= damage;
     }
 
     public void SetSpeed(float speed)
     {
-       currentSpeed = speed;
+        currentSpeed = speed;
     }
 
     public virtual void Attack()
@@ -146,7 +146,7 @@ public class EnemyBase : MonoBehaviour
     {
         if (tilemap == null) return;
         Waypoints = new List<Vector3>();
-        Vector3Int randomPos = new Vector3Int(100000000,100000000,100000000);
+        Vector3Int randomPos = new Vector3Int(100000000, 100000000, 100000000);
         while (!tilemap.cellBounds.Contains(randomPos))
         {
             randomPos = GenerateWaypoint();
@@ -168,28 +168,28 @@ public class EnemyBase : MonoBehaviour
     {
         float randomX = startPos.x + Random.Range(-stats.patrolRadius, stats.patrolRadius);
         float randomY = startPos.y + Random.Range(-stats.patrolRadius, stats.patrolRadius);
-        
+
         Vector3Int randomPos = tilemap.WorldToCell(new Vector3(randomX, randomY, 0));
         return randomPos;
     }
     public virtual void Death()
     {
-        
+
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-		if(collision.gameObject.TryGetComponent<PlayerController>(out PlayerController player))
-		{
-			PC = player;
-			detectedPlayer = true;
-		}
+        if (collision.gameObject.TryGetComponent<PlayerController>(out PlayerController player))
+        {
+            PC = player;
+            detectedPlayer = true;
+        }
     }
-private void OnTriggerExit2D(Collider2D collision)
+    private void OnTriggerExit2D(Collider2D collision)
     {
-		if(collision.gameObject.TryGetComponent<PlayerController>(out PlayerController player))
-		{
-			PC = null;
-			detectedPlayer = false;
-		}
+        if (collision.gameObject.TryGetComponent<PlayerController>(out PlayerController player))
+        {
+            PC = null;
+            detectedPlayer = false;
+        }
     }
 }

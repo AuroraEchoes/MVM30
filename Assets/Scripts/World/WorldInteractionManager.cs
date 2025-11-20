@@ -35,5 +35,4 @@ public class WorldInteractionManager : MonoBehaviour
         // TODO: Some sort of check for placeable vs non-placable tiles
         return TerrainTilemap.HasTile(Tile.ToVector3Int());
     }
-
 }
