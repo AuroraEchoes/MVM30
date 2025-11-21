@@ -16,3 +16,4 @@ MonoBehaviour:
   CooldownSeconds: 2
   TrapTile: {fileID: 11400000, guid: 2ccb31cdb00ba6320997f8bd89aaaccc, type: 2}
   PlacementRangeTiles: 7
+  TrapImplementation: {fileID: 5158005198035762741, guid: 237e22c936f6699e7837ea13d4b5acc1, type: 3}

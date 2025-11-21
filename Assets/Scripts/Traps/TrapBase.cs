@@ -1,9 +1,10 @@
 using UnityEngine;
 
-public class TrapBase : MonoBehaviour
+public abstract class TrapBase : MonoBehaviour
 {
-    private float LastTriggeredTime;
+    private float WarmupTimeRemaining;
 
-    [SerializeField]
-    public TrapData TrapData;
+    // TODO: Change GameObject to a more specific type
+    public abstract void Activate(TrapData TrapData, GameObject Other);
+
 }

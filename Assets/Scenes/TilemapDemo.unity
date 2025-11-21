@@ -119,6 +119,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!70 &543096142 stripped
+CapsuleCollider2D:
+  m_CorrespondingSourceObject: {fileID: 302525379581010024, guid: 1fec79911faea4c4ca438b84d89a1547, type: 3}
+  m_PrefabInstance: {fileID: 1416765689}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &872264470
 GameObject:
   m_ObjectHideFlags: 0
@@ -132,6 +137,7 @@ GameObject:
   - component: {fileID: 872264472}
   - component: {fileID: 872264474}
   - component: {fileID: 872264475}
+  - component: {fileID: 872264476}
   m_Layer: 0
   m_Name: Traps
   m_TagString: Untagged
@@ -269,7 +275,7 @@ TilemapCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4294967295
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -294,6 +300,26 @@ TilemapCollider2D:
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0
   m_UseDelaunayMesh: 0
+--- !u!114 &872264476
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 872264470}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3dadacd8d4f470c4380a1a560087ca2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Enabled: 1
+  EnableTileTrapsVisualisation: 0
+  EnableStoredTrapsVisualisation: 0
+  EnableEnemyOccupiedTilesVisualisation: 1
+  EnableMissedTileLineDrawing: 0
+  TrackedEntities:
+  - {fileID: 543096142}
+  TrapManager: {fileID: 872264474}
 --- !u!1 &877670981
 GameObject:
   m_ObjectHideFlags: 0
@@ -306,6 +332,7 @@ GameObject:
   - component: {fileID: 877670984}
   - component: {fileID: 877670983}
   - component: {fileID: 877670985}
+  - component: {fileID: 877670986}
   m_Layer: 0
   m_Name: Ground
   m_TagString: Untagged
@@ -4426,6 +4453,19 @@ TilemapCollider2D:
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0
   m_UseDelaunayMesh: 0
+--- !u!114 &877670986
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 877670981}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e6c44905be3a6a01931e3b6d1041b65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Enabled: 0
 --- !u!1001 &1416765689
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4438,9 +4478,21 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1749222416195385303, guid: 1fec79911faea4c4ca438b84d89a1547, type: 3}
+      propertyPath: m_BodyType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1749222416195385303, guid: 1fec79911faea4c4ca438b84d89a1547, type: 3}
+      propertyPath: m_IncludeLayers.m_Bits
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 1871527539838967685, guid: 1fec79911faea4c4ca438b84d89a1547, type: 3}
       propertyPath: m_Name
       value: TestEnemy1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1871527539838967685, guid: 1fec79911faea4c4ca438b84d89a1547, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1982153225761882529, guid: 1fec79911faea4c4ca438b84d89a1547, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4481,6 +4533,14 @@ PrefabInstance:
     - target: {fileID: 1982153225761882529, guid: 1fec79911faea4c4ca438b84d89a1547, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4835716072197342758, guid: 1fec79911faea4c4ca438b84d89a1547, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5656847272816179522, guid: 1fec79911faea4c4ca438b84d89a1547, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4956,6 +5016,10 @@ PrefabInstance:
     - target: {fileID: 57930469326373810, guid: 3bfed8b63e2aa375b99f0ec990b7189f, type: 3}
       propertyPath: m_Name
       value: Character
+      objectReference: {fileID: 0}
+    - target: {fileID: 57930469326373810, guid: 3bfed8b63e2aa375b99f0ec990b7189f, type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 5215124613013914455, guid: 3bfed8b63e2aa375b99f0ec990b7189f, type: 3}
       propertyPath: m_ActionEvents.Array.size
