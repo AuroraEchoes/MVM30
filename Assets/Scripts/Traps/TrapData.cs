@@ -8,4 +8,5 @@ public class TrapData : ScriptableObject
     public float CooldownSeconds;
     public TileBase TrapTile;
     public int PlacementRangeTiles;
+    public TrapBase TrapImplementation;
 }

@@ -73,7 +73,6 @@ public class PlayerController : MonoBehaviour
             Vector3 MousePosWorld = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             TrapData TrapData = Traps[SelectedTrapIndex];
             bool SuccesfullyPlaced = World.TryPlaceTrap(FeetLocation.position, MousePosWorld, TrapData);
-            Debug.Log($"Tried to place trap. Successful: {SuccesfullyPlaced}");
             if (SuccesfullyPlaced)
             {
                 // Exit placement mode
