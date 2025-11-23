@@ -119,11 +119,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!70 &543096142 stripped
-CapsuleCollider2D:
-  m_CorrespondingSourceObject: {fileID: 302525379581010024, guid: 1fec79911faea4c4ca438b84d89a1547, type: 3}
-  m_PrefabInstance: {fileID: 1416765689}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &872264470
 GameObject:
   m_ObjectHideFlags: 0
@@ -312,14 +307,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3dadacd8d4f470c4380a1a560087ca2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Enabled: 1
-  EnableTileTrapsVisualisation: 0
-  EnableStoredTrapsVisualisation: 0
-  EnableEnemyOccupiedTilesVisualisation: 1
-  EnableMissedTileLineDrawing: 0
-  TrackedEntities:
-  - {fileID: 543096142}
-  TrapManager: {fileID: 872264474}
 --- !u!1 &877670981
 GameObject:
   m_ObjectHideFlags: 0
@@ -4465,7 +4452,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e6c44905be3a6a01931e3b6d1041b65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Enabled: 0
 --- !u!1001 &1416765689
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4496,11 +4482,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1982153225761882529, guid: 1fec79911faea4c4ca438b84d89a1547, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.9378018
+      value: 7.29
       objectReference: {fileID: 0}
     - target: {fileID: 1982153225761882529, guid: 1fec79911faea4c4ca438b84d89a1547, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.7863923
+      value: 0.75
       objectReference: {fileID: 0}
     - target: {fileID: 1982153225761882529, guid: 1fec79911faea4c4ca438b84d89a1547, type: 3}
       propertyPath: m_LocalPosition.z

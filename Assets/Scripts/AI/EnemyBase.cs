@@ -166,8 +166,9 @@ public class EnemyBase : MonoBehaviour
 
     private Vector3Int GenerateWaypoint()
     {
-        float randomX = startPos.x + Random.Range(-stats.patrolRadius, stats.patrolRadius);
-        float randomY = startPos.y + Random.Range(-stats.patrolRadius, stats.patrolRadius);
+		Vector3 cellSize = tilemap.layoutGrid.cellSize;
+        float randomX = startPos.x + Random.Range(-stats.patrolRadius * cellSize.x, stats.patrolRadius* cellSize.x);
+        float randomY = startPos.y + Random.Range(-stats.patrolRadius* cellSize.y, stats.patrolRadius* cellSize.y);
 
         Vector3Int randomPos = tilemap.WorldToCell(new Vector3(randomX, randomY, 0));
         return randomPos;
