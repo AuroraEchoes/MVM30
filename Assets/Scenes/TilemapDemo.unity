@@ -5023,7 +5023,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5215124613013914455, guid: 3bfed8b63e2aa375b99f0ec990b7189f, type: 3}
       propertyPath: m_ActionEvents.Array.size
-      value: 16
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 5215124613013914455, guid: 3bfed8b63e2aa375b99f0ec990b7189f, type: 3}
       propertyPath: m_ActionEvents.Array.data[14].m_ActionId
@@ -5034,6 +5034,10 @@ PrefabInstance:
       value: 65041e94-50fb-44b9-a3f5-9a0a98d1526f
       objectReference: {fileID: 0}
     - target: {fileID: 5215124613013914455, guid: 3bfed8b63e2aa375b99f0ec990b7189f, type: 3}
+      propertyPath: m_ActionEvents.Array.data[16].m_ActionId
+      value: 3d2b18b4-b1f9-4763-9515-faed15d0fe5d
+      objectReference: {fileID: 0}
+    - target: {fileID: 5215124613013914455, guid: 3bfed8b63e2aa375b99f0ec990b7189f, type: 3}
       propertyPath: m_ActionEvents.Array.data[14].m_ActionName
       value: 'Player/PlaceTrapIndex1[/Keyboard/1,/Keyboard/z]'
       objectReference: {fileID: 0}
@@ -5042,11 +5046,19 @@ PrefabInstance:
       value: 'Player/PlaceTrapIndex2[/Keyboard/2,/Keyboard/x]'
       objectReference: {fileID: 0}
     - target: {fileID: 5215124613013914455, guid: 3bfed8b63e2aa375b99f0ec990b7189f, type: 3}
+      propertyPath: m_ActionEvents.Array.data[16].m_ActionName
+      value: 'Player/Dash[/Keyboard/shift]'
+      objectReference: {fileID: 0}
+    - target: {fileID: 5215124613013914455, guid: 3bfed8b63e2aa375b99f0ec990b7189f, type: 3}
       propertyPath: m_ActionEvents.Array.data[14].m_PersistentCalls.m_Calls.Array.size
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5215124613013914455, guid: 3bfed8b63e2aa375b99f0ec990b7189f, type: 3}
       propertyPath: m_ActionEvents.Array.data[15].m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5215124613013914455, guid: 3bfed8b63e2aa375b99f0ec990b7189f, type: 3}
+      propertyPath: m_ActionEvents.Array.data[16].m_PersistentCalls.m_Calls.Array.size
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5215124613013914455, guid: 3bfed8b63e2aa375b99f0ec990b7189f, type: 3}
@@ -5058,6 +5070,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5215124613013914455, guid: 3bfed8b63e2aa375b99f0ec990b7189f, type: 3}
+      propertyPath: m_ActionEvents.Array.data[16].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5215124613013914455, guid: 3bfed8b63e2aa375b99f0ec990b7189f, type: 3}
       propertyPath: m_ActionEvents.Array.data[14].m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 8952759853560183501}
@@ -5066,11 +5082,19 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8952759853560183501}
     - target: {fileID: 5215124613013914455, guid: 3bfed8b63e2aa375b99f0ec990b7189f, type: 3}
+      propertyPath: m_ActionEvents.Array.data[16].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 8952759853560183501}
+    - target: {fileID: 5215124613013914455, guid: 3bfed8b63e2aa375b99f0ec990b7189f, type: 3}
       propertyPath: m_ActionEvents.Array.data[14].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5215124613013914455, guid: 3bfed8b63e2aa375b99f0ec990b7189f, type: 3}
       propertyPath: m_ActionEvents.Array.data[15].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5215124613013914455, guid: 3bfed8b63e2aa375b99f0ec990b7189f, type: 3}
+      propertyPath: m_ActionEvents.Array.data[16].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5215124613013914455, guid: 3bfed8b63e2aa375b99f0ec990b7189f, type: 3}
@@ -5086,11 +5110,19 @@ PrefabInstance:
       value: PlaceTrapIndex2
       objectReference: {fileID: 0}
     - target: {fileID: 5215124613013914455, guid: 3bfed8b63e2aa375b99f0ec990b7189f, type: 3}
+      propertyPath: m_ActionEvents.Array.data[16].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Dash
+      objectReference: {fileID: 0}
+    - target: {fileID: 5215124613013914455, guid: 3bfed8b63e2aa375b99f0ec990b7189f, type: 3}
       propertyPath: m_ActionEvents.Array.data[14].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: PlayerController, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 5215124613013914455, guid: 3bfed8b63e2aa375b99f0ec990b7189f, type: 3}
       propertyPath: m_ActionEvents.Array.data[15].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PlayerController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5215124613013914455, guid: 3bfed8b63e2aa375b99f0ec990b7189f, type: 3}
+      propertyPath: m_ActionEvents.Array.data[16].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: PlayerController, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 5215124613013914455, guid: 3bfed8b63e2aa375b99f0ec990b7189f, type: 3}
@@ -5101,6 +5133,10 @@ PrefabInstance:
       propertyPath: m_ActionEvents.Array.data[15].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 5215124613013914455, guid: 3bfed8b63e2aa375b99f0ec990b7189f, type: 3}
+      propertyPath: m_ActionEvents.Array.data[16].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 7891554979072024782, guid: 3bfed8b63e2aa375b99f0ec990b7189f, type: 3}
       propertyPath: World
       value: 
@@ -5108,6 +5144,14 @@ PrefabInstance:
     - target: {fileID: 7891554979072024782, guid: 3bfed8b63e2aa375b99f0ec990b7189f, type: 3}
       propertyPath: TrapLayer
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7891554979072024782, guid: 3bfed8b63e2aa375b99f0ec990b7189f, type: 3}
+      propertyPath: DashDistance
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7891554979072024782, guid: 3bfed8b63e2aa375b99f0ec990b7189f, type: 3}
+      propertyPath: DashDuration
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 7891554979072024782, guid: 3bfed8b63e2aa375b99f0ec990b7189f, type: 3}
       propertyPath: Traps.Array.size
