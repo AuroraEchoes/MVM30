@@ -12,6 +12,20 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Transform FeetLocation;
     [SerializeField] private WorldInteractionManager World;
 
+
+    //Dash Settings
+    [Header("Dash")]
+    [SerializeField] private float DashDistance = 3.0f;
+    [SerializeField] private float DashDuration = 0.2f;
+    [SerializeField] private float DashCooldown = 1.0f;
+
+    //Dash Variables
+    private bool IsDashing = false;
+    private float DashTimer = 0f;
+    private float DashCooldownTimer = 0f;
+    private Vector2 DashDirection = Vector2.zero;
+
+
     private Rigidbody2D Rigidbody;
     private Animator AnimationController;
     private Vector2 MovementInput;
@@ -29,6 +43,9 @@ public class PlayerController : MonoBehaviour
     private static Matrix2D ScreenControlsMatrix = new Matrix2D(new Vector2(2.0f, 0.0f), new Vector2(0.0f, 1.0f));
     private static Matrix2D WorldControlsMatrix = new Matrix2D(new Vector2(2.0f, -1.0f), new Vector2(2.0f, 1.0f));
 
+
+
+
     private void Start()
     {
         Rigidbody = GetComponent<Rigidbody2D>();
@@ -38,14 +55,41 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         AnimationController.SetFloat("Direction", CurrentDirectionIndex);
-        AnimationController.SetBool("IsWalking", Rigidbody.linearVelocity.magnitude > 0.0f);
+        AnimationController.SetBool("IsWalking", Rigidbody.linearVelocity.magnitude > 0.0f && !IsDashing);
+
+        // Handle dash timers
+        if (IsDashing)
+        {
+            DashTimer -= Time.deltaTime;
+            if (DashTimer <= 0f)
+            {
+                IsDashing = false;
+
+            }
+        }
+
+        if (DashCooldownTimer > 0f)
+        {
+            DashCooldownTimer -= Time.deltaTime;
+        }
+
         TickTrapCooldowns();
     }
 
     private void FixedUpdate()
     {
-        Vector2 Direction = CalculateMovementDirection();
-        Rigidbody.linearVelocity = Direction * MovementSpeed * Time.fixedDeltaTime;
+        if (IsDashing)
+        {
+           //Dashing things
+            float dashSpeed = DashDistance / DashDuration;
+            Rigidbody.linearVelocity = DashDirection * dashSpeed;
+        }
+        else
+        {
+            // Normal movement
+            Vector2 Direction = CalculateMovementDirection();
+            Rigidbody.linearVelocity = Direction * MovementSpeed * Time.fixedDeltaTime;
+        }
     }
 
     public void Move(InputAction.CallbackContext Context)
@@ -148,4 +192,35 @@ public class PlayerController : MonoBehaviour
             World.EnableTrapPlacementVisualisation(Traps[Index]);
         }
     }
+
+    public void Dash(InputAction.CallbackContext Context)
+    {
+        //Checking if we can dash (Cant if we are already dashing and dash cd) --> Could just remove isdashing but upgrades maybe??
+        if (Context.started && !IsDashing && DashCooldownTimer <= 0f)
+        {
+            StartDash();
+        }
+    }
+
+    private void StartDash()
+    {
+        // Look for our current mouse 
+        Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        mouseWorldPos.z = 0f;
+
+        DashDirection = (mouseWorldPos - transform.position).normalized; 
+
+
+        //Making sure not to dash on the same spot
+        if (DashDirection.magnitude > 0.1f)
+        {
+            IsDashing = true;
+            DashTimer = DashDuration;
+            DashCooldownTimer = DashCooldown;
+
+          //Add animation here
+        }
+    }
+
+
 }
