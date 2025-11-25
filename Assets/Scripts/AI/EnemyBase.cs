@@ -11,6 +11,7 @@ public class EnemyBase : MonoBehaviour
     [SerializeField] public EnemyStats stats;
     [SerializeField] protected AttackBase[] attacks;
     [SerializeField] public Transform EnemyFeetPos;
+	[SerializeField] private CircleCollider2D DetectionCollider;
     private float currentHealth;
     private bool CanBeDamaged = true;
     private bool detectsPlayer = false;
@@ -23,6 +24,7 @@ public class EnemyBase : MonoBehaviour
     protected float currentSpeed;
     protected bool detectedPlayer;
     protected PlayerController PC;
+	private Transform playerFeet;
 
     void Start()
     {
@@ -77,8 +79,21 @@ public class EnemyBase : MonoBehaviour
         }
 
         currentSpeed = stats.speed;
-
-        Waypoints[0] = PC.gameObject.transform.position;
+		if(playerFeet == null)
+		{
+			foreach(Transform transforms in PC.gameObject.GetComponentsInChildren<Transform>())
+			{
+				if(transforms.gameObject.name.Contains("Feet"))
+				{
+					playerFeet = transforms;
+					Waypoints[0] = playerFeet.position;
+				}	
+			}
+		}
+		else
+		{
+			Waypoints[0] = playerFeet.position;
+		}
         if (Vector3.Distance(EnemyFeetPos.position, Waypoints[0]) < stats.AttackDistance)
         {
             isAttacking = true;
@@ -90,7 +105,7 @@ public class EnemyBase : MonoBehaviour
     {
         if (Waypoints.Count > 0)
         {
-            if (Vector3.Distance(EnemyFeetPos.position, Waypoints[0]) < 1.0f)
+            if (Vector3.Distance(EnemyFeetPos.position, Waypoints[0]) < 0.5f)
             {
                 Waypoints.RemoveAt(0);
                 currentSpeed = 0;
@@ -177,12 +192,14 @@ public class EnemyBase : MonoBehaviour
     {
 
     }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.TryGetComponent<PlayerController>(out PlayerController player))
         {
             PC = player;
             detectedPlayer = true;
+            DetectionCollider.radius = stats.extendedChaseRadius;
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
@@ -191,6 +208,7 @@ public class EnemyBase : MonoBehaviour
         {
             PC = null;
             detectedPlayer = false;
+            DetectionCollider.radius = stats.baseChaseRadius;
         }
     }
 }

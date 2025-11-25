@@ -9,5 +9,7 @@ public class EnemyStats : ScriptableObject
 	public float AttackDistance;
 	public float minCooldown;
 	public float maxCooldown;
+   public float baseChaseRadius;
+   public float extendedChaseRadius;
 
 }
