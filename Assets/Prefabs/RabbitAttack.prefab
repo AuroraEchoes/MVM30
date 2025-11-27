@@ -44,5 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 899f40fb59f49ca409212beb79982190, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackspeed: 200
+  attackspeed: 400
+  MoveToSpotSpeed: 100
   AttackRange: 10

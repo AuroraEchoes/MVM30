@@ -9,10 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1982153225761882529}
+  - component: {fileID: 6917131339400278575}
   - component: {fileID: 66978334225305157}
   - component: {fileID: 1749222416195385303}
   - component: {fileID: 302525379581010024}
-  - component: {fileID: 6917131339400278575}
   m_Layer: 0
   m_Name: RabbitEnemy
   m_TagString: Untagged
@@ -37,6 +37,28 @@ Transform:
   - {fileID: 2376183685664265884}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6917131339400278575
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1871527539838967685}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6570f780f8a213e4cb66a325e2d5c519, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  name: Rabbit
+  stats: {fileID: 11400000, guid: 89c35bafd868d7b4c955a24d6bfa64c6, type: 2}
+  attacks:
+  - {fileID: -9186589906286017079, guid: 9c25288b1ef51b049a857336e3712446, type: 3}
+  EnemyFeetPos: {fileID: 2991906237964776708}
+  DetectionCollider: {fileID: 2943896746777298660}
+  isAttacking: 0
+  isCooldown: 0
+  Waypoints: []
+  tilemap: {fileID: 0}
 --- !u!212 &66978334225305157
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -156,28 +178,6 @@ CapsuleCollider2D:
   m_Offset: {x: 0.01122427, y: -0.13}
   m_Size: {x: 0.35775757, y: 0.35775757}
   m_Direction: 0
---- !u!114 &6917131339400278575
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1871527539838967685}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6570f780f8a213e4cb66a325e2d5c519, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  name: Rabbit
-  stats: {fileID: 11400000, guid: 89c35bafd868d7b4c955a24d6bfa64c6, type: 2}
-  attacks:
-  - {fileID: -9186589906286017079, guid: 9c25288b1ef51b049a857336e3712446, type: 3}
-  EnemyFeetPos: {fileID: 2991906237964776708}
-  DetectionCollider: {fileID: 2943896746777298660}
-  isAttacking: 0
-  isCooldown: 0
-  Waypoints: []
-  tilemap: {fileID: 0}
 --- !u!1 &4835716072197342758
 GameObject:
   m_ObjectHideFlags: 0

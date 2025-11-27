@@ -2,6 +2,7 @@
 using System.Numerics;
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 using Vector3 = UnityEngine.Vector3;
 using Vector2 = UnityEngine.Vector2;
@@ -50,13 +51,20 @@ private IEnumerator MoveAttack(RabbitEnemy rabbit, PlayerController PC)
                 }
             }
             Vector3 worldPos = rabbit.tilemap.CellToWorld(new Vector3Int((int)currentCell.x, (int)currentCell.y,0));
-            rabbit.Waypoints.Add(worldPos /*+ new Vector3(0.5f,0.5f,0)*/);
+            rabbit.Waypoints.Add(worldPos);
             Debug.Log("Bingle bongle dingle dangle");
         }
         float requiredTime = 0;
         if (rabbit.Waypoints.Count > 0)
         {
-            requiredTime = Vector3.Distance(StartPosition, rabbit.Waypoints[rabbit.Waypoints.Count - 1]) / (MoveToSpotSpeed * Time.fixedDeltaTime);
+            requiredTime = Vector3.Distance(StartPosition, rabbit.Waypoints[0]) / (MoveToSpotSpeed * Time.fixedDeltaTime);
+            for(int i = 0; i < rabbit.Waypoints.Count - 1; i++)
+            {
+                if(i < rabbit.Waypoints.Count - 1)
+                {
+                    requiredTime += Vector3.Distance(rabbit.Waypoints[i], rabbit.Waypoints[i + 1]) / (MoveToSpotSpeed * Time.fixedDeltaTime);
+                }
+            }
         }
         while (value < requiredTime)
         {
@@ -69,14 +77,19 @@ private IEnumerator MoveAttack(RabbitEnemy rabbit, PlayerController PC)
         rabbit.Waypoints.Clear();
         //Here we would play th animation for the big wind up and also display where the attack will be going
         yield return new WaitForSeconds(1.0f);
+        List<Vector2> attackTiles = new List<Vector2>();
+        endPosition = PC.gameObject.transform.position;
+        EndTileCell = rabbit.tilemap.WorldToCell(endPosition);
         if (currentCell.x == EndTileCell.x)
         {
             if(EndTileCell.y > currentCell.y)
             {
+                for (int i = 0; i < AttackRange; i++) attackTiles.Add(new Vector2(currentCell.x, currentCell.y + i));
                 currentCell.y += AttackRange;
             }
             else
             {
+                for (int i = 0; i < AttackRange; i++) attackTiles.Add(new Vector2(currentCell.x, currentCell.y - i));
                 currentCell.y -= AttackRange;
             }
         }
@@ -84,20 +97,22 @@ private IEnumerator MoveAttack(RabbitEnemy rabbit, PlayerController PC)
         {
             if(EndTileCell.x > currentCell.x)
             {
-                currentCell.x += AttackRange;
+                for (int i = 0; i < AttackRange; i++) attackTiles.Add(new Vector2(currentCell.x + i, currentCell.y));
+                currentCell.x += AttackRange;  
             }
             else
             {
+                for (int i = 0; i < AttackRange; i++) attackTiles.Add(new Vector2(currentCell.x - i, currentCell.y));
                 currentCell.x -= AttackRange;
             }
         }
-        rabbit.Waypoints.Add(rabbit.tilemap.CellToWorld(currentCell));
-
-        //rabbit.Waypoints.Add(endPosition);
         
+        rabbit.Waypoints.Add(rabbit.tilemap.CellToWorld(currentCell));
         Debug.Log("Bingle bongle dingle dangle2");
         StartTileCell = rabbit.tilemap.WorldToCell(rabbit.EnemyFeetPos.position);
-        requiredTime = Vector3.Distance(StartTileCell, rabbit.Waypoints[0]) / (MoveToSpotSpeed * Time.fixedDeltaTime);
+        requiredTime = Vector3.Distance(StartTileCell, rabbit.Waypoints[0]) / (attackspeed * Time.fixedDeltaTime);
+        EnemyAttackVisualisation EAV = GameObject.FindObjectOfType<EnemyAttackVisualisation>();
+        EAV.VisualiseAttack(this, attackTiles);
         while (value < requiredTime)
         {
             value += Time.deltaTime;
@@ -109,6 +124,7 @@ private IEnumerator MoveAttack(RabbitEnemy rabbit, PlayerController PC)
         rabbit.SetSpeed(rabbit.stats.speed);
         rabbit.DoCoolDownExternal();
         rabbit.isAttacking = false;
+        EAV.DestroyTilemap(this);
         yield return null;
     }
 
