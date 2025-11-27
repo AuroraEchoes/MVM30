@@ -4841,7 +4841,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bf35ae1e9ecd704b9ef2052ed78fbb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tilemapTemplate: {fileID: 877670984}
+  tilemapTemplate: {fileID: 1419863010151080415, guid: f3d9852c793ddc94da0205bd6f3ee3e1, type: 3}
   ObstructedTile: {fileID: 11400000, guid: a940d7a790251189993e66a84b37bf9d, type: 2}
 --- !u!4 &1715984247 stripped
 Transform:
