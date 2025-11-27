@@ -1,3 +1,4 @@
+
 using System;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -18,7 +19,7 @@ public class EnemyBase : MonoBehaviour
     public bool isAttacking = false;
     public bool isCooldown = false;
     public List<Vector3> Waypoints;
-    protected Tilemap tilemap;
+    public Tilemap tilemap;
     protected Rigidbody2D rb;
     protected Vector2 startPos;
     protected float currentSpeed;
@@ -46,6 +47,11 @@ public class EnemyBase : MonoBehaviour
 
     void FixedUpdate()
     {
+        EnemyLogic();
+    }
+
+public virtual void EnemyLogic()
+    {
         if (!isAttacking && !isCooldown)
         {
             if (detectedPlayer)
@@ -63,11 +69,22 @@ public class EnemyBase : MonoBehaviour
             rb.linearVelocity = new Vector2(0, 0) * 0;
             Waypoints.Clear();
         }
-
+        Vector2 direction = new Vector2(0, 0);
         if (Waypoints.Count > 0)
         {
-            Vector2 direction = (Waypoints[0] - EnemyFeetPos.position).normalized;
-            rb.linearVelocity = direction * currentSpeed * Time.fixedDeltaTime;
+            direction = (Waypoints[0] - EnemyFeetPos.position).normalized;
+        }
+        rb.linearVelocity = direction * currentSpeed * Time.fixedDeltaTime;
+    }
+
+    public virtual void AttackMove()
+    {
+        if (Waypoints.Count > 0)
+        {
+            if (Vector3.Distance(EnemyFeetPos.position, Waypoints[0]) < 0.5f)
+            {
+                Waypoints.RemoveAt(0);
+            }
         }
     }
 

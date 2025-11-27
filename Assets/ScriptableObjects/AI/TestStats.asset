@@ -15,7 +15,7 @@ MonoBehaviour:
   health: 20
   speed: 75
   patrolRadius: 5
-  AttackDistance: 2
+  AttackDistance: 4
   minCooldown: 1
   maxCooldown: 4
   baseChaseRadius: 3
